@@ -24,12 +24,11 @@ func main(){
 <html>
 <head><title>VMWare Exporter v` + VERSION + `</title></head>
 <body>
-<h1>Redis Exporter ` + VERSION + `</h1>
+<h1>VMWare Exporter ` + VERSION + `</h1>
 <p><a href='` + *metricPath + `'>Metrics</a></p>
 </body>
 </html>
 						`))
-	})
-	
+	})	
 	http.ListenAndServe(":9272", nil)
 }
