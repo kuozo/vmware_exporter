@@ -2,9 +2,9 @@ package pkg
 
 import (
 	"sync"
-	"context"
+	//"context"
 
-	"github.com/vmware/govmomi"
+	//"github.com/vmware/govmomi"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
@@ -57,9 +57,4 @@ func (e *Exporter)Collect(ch chan<- prometheus.Metric){
 
 func (e *Exporter) scrapeVMware(){
 
-}
-
-func(e *Exporter) newVMwareClient(ctx context.Context)(*govmomi.Client, error){
-	
-	return &govmomi.NewClient(), nil
 }
