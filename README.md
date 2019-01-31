@@ -12,3 +12,8 @@ Prometheus Exporter for VMWare Metrics.
 ## Golang
 
 * Verion: go1.11 darwin/amd64
+
+## REFERENCES
+
+* [VMware vSphere Performance Metrics](https://pubs.vmware.com/vsphere-4-esx-vcenter/index.jsp?topic=/com.vmware.vsphere.bsa.doc_40/vc_admin_guide/performance_metrics/c_performance_metrics.html)
+* [Vwarem Managed Object - PerformanceManager](https://www.vmware.com/support/developer/converter-sdk/conv61_apireference/vim.PerformanceManager.html)

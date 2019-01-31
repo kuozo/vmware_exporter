@@ -13,4 +13,10 @@
 * 版本： 1.11 版本以及以上
 
 
+## 参考链接
+
+* [VMware vSphere Performance Metrics](https://pubs.vmware.com/vsphere-4-esx-vcenter/index.jsp?topic=/com.vmware.vsphere.bsa.doc_40/vc_admin_guide/performance_metrics/c_performance_metrics.html)
+* [Vwarem Managed Object - PerformanceManager](https://www.vmware.com/support/developer/converter-sdk/conv61_apireference/vim.PerformanceManager.html)
+
+
 
