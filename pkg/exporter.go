@@ -2,39 +2,39 @@ package pkg
 
 import (
 	"sync"
-	//"context"
 
 	//"github.com/vmware/govmomi"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
-
+// Exporter Vmware Exporter
 type Exporter struct {
-	vsphereHost string
-	vsphereUser string
+	vsphereHost     string
+	vsphereUser     string
 	vspherePassword string
-	ignoreSSL bool
-	metrics  map[string]*prometheus.GaugeVec
+	ignoreSSL       bool
+	metrics         map[string]*prometheus.GaugeVec
 	sync.RWMutex
 	namespace string
 }
+
 // NewVMwareExporter returns a new exporter of vmware metrics.
-func NewVMwareExporter(vsphereHost, vsphereUser, vspherePassword string, ignoreSSL bool)(*Exporter, error){
+func NewVMwareExporter(vsphereHost, vsphereUser, vspherePassword string, ignoreSSL bool) (*Exporter, error) {
 
 	e := Exporter{
-		vsphereHost: vsphereHost,
-		vsphereUser: vsphereUser, 
+		vsphereHost:     vsphereHost,
+		vsphereUser:     vsphereUser,
 		vspherePassword: vspherePassword,
-		ignoreSSL: ignoreSSL,
+		ignoreSSL:       ignoreSSL,
 	}
 	e.initGauges()
 	return &e, nil
 }
 
-func (e *Exporter) initGauges(){
+func (e *Exporter) initGauges() {
 	e.metrics = map[string]*prometheus.GaugeVec{}
 	// e.metrics[""] = prometheus.NewGaugeVec(prometheus.GaugeOpts{
-		
+
 	// })
 }
 
@@ -51,10 +51,10 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 }
 
 // Collect fetches new metrics from the RedisHost and updates the appropriate metrics.
-func (e *Exporter)Collect(ch chan<- prometheus.Metric){
+func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 
 }
 
-func (e *Exporter) scrapeVMware(){
+func (e *Exporter) scrapeVMware() {
 
 }

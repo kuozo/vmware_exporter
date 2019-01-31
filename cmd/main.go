@@ -1,15 +1,15 @@
 package main
 
 import (
-	"os"
 	"flag"
+	"net/http"
+	"os"
 	"runtime"
 	"strconv"
-	"net/http"
-	
+
+	"github.com/klnchu/vmware_exporter/pkg"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"github.com/klnchu/vmware_exporter/pkg"
 
 	log "github.com/sirupsen/logrus"
 )
@@ -27,25 +27,25 @@ var (
 	BUILD_DATE        = "<<< filled in by build >>>"
 )
 
-func init(){
+func init() {
 	log.SetFormatter(&log.JSONFormatter{})
 }
 
 func getEnvBool(key string) (envValBool bool) {
 	if envVal, ok := os.LookupEnv(key); ok {
 		envValBool, _ = strconv.ParseBool(envVal)
-	}else{
+	} else {
 		envValBool = true
 	}
 	return
 }
 
-func main(){
+func main() {
 
 	flag.Parse()
 
 	exp, err := pkg.NewVMwareExporter(*vsphereHost, *vsphereUser, *vspherePassword, *ignoreSSL)
-	
+
 	if err != nil {
 		log.Fatal(err)
 		os.Exit(1)
@@ -57,13 +57,13 @@ func main(){
 	}, []string{"version", "commit_sha", "build_date", "golang_version"})
 	buildInfo.WithLabelValues(VERSION, COMMIT_SHA1, BUILD_DATE, runtime.Version()).Set(1)
 
-	if *vmwareMetricsOnly{
+	if *vmwareMetricsOnly {
 		registry := prometheus.NewRegistry()
 		registry.Register(exp)
 		registry.Register(buildInfo)
 		handler := promhttp.HandlerFor(registry, promhttp.HandlerOpts{})
 		http.Handle(*metricPath, handler)
-	}else{
+	} else {
 		prometheus.MustRegister(exp)
 		prometheus.MustRegister(buildInfo)
 		http.Handle(*metricPath, promhttp.Handler())
