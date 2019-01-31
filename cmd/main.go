@@ -8,9 +8,9 @@ import (
 	"strconv"
 
 	"github.com/klnchu/vmware_exporter/pkg"
+
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-
 	log "github.com/sirupsen/logrus"
 )
 
@@ -22,9 +22,12 @@ var (
 	port              = flag.String("port", ":9272", "VMware exporter http port")
 	metricPath        = flag.String("metric_path", "/metrics", "Metrics Path")
 	vmwareMetricsOnly = flag.Bool("vmware-only-metrics", getEnvBool("VMWARE_EXPORTER_ONLY_METRICS"), "Whether to export go runtime metrics also")
-	VERSION           = "<<< filled in by build >>>"
-	COMMIT_SHA1       = "<<< filled in by build >>>"
-	BUILD_DATE        = "<<< filled in by build >>>"
+	// VERSION version
+	VERSION = "<<< filled in by build >>>"
+	// COMMITSHA1 git commit sha1
+	COMMITSHA1 = "<<< filled in by build >>>"
+	// BUILDDATE build date
+	BUILDDATE = "<<< filled in by build >>>"
 )
 
 func init() {
@@ -55,7 +58,7 @@ func main() {
 		Name: "vmware_exporter_build_info",
 		Help: "vmware exporter build_info",
 	}, []string{"version", "commit_sha", "build_date", "golang_version"})
-	buildInfo.WithLabelValues(VERSION, COMMIT_SHA1, BUILD_DATE, runtime.Version()).Set(1)
+	buildInfo.WithLabelValues(VERSION, COMMITSHA1, BUILDDATE, runtime.Version()).Set(1)
 
 	if *vmwareMetricsOnly {
 		registry := prometheus.NewRegistry()
