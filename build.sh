@@ -7,4 +7,4 @@ export GOARCH=amd64
 export COMMIT_SHA1=$(git rev-parse --short HEAD)
 export VERSION=$(git describe --tags `git rev-list --tags --max-count=1`)
 
-go build -ldflags "-extldflags \"-static\" -X main.VERSION=${VERSION} -X main.COMMIT_SHA1=${COMMIT_SHA1} -X main.BUILD_DATE=$(date +%F-%T)" -o dist/vmware_exporter cmd/main.go
+go build -ldflags "-extldflags \"-static\" -X main.VERSION=${VERSION} -X main.COMMITSHA1=${COMMIT_SHA1} -X main.BUILDDATE=$(date +%F-%T)" -o dist/vmware_exporter cmd/main.go
