@@ -13,6 +13,10 @@ Prometheus Exporter for VMWare Metrics.
 
 * Verion: go1.11 darwin/amd64
 
+## Comment
+
+* percent metric value as percentage * 100 value
+
 ## REFERENCES
 
 * [VMware vSphere Performance Metrics](https://pubs.vmware.com/vsphere-4-esx-vcenter/index.jsp?topic=/com.vmware.vsphere.bsa.doc_40/vc_admin_guide/performance_metrics/c_performance_metrics.html)
